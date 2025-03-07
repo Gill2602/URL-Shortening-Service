@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  mariadb:
+    image: mariadb:11.7.2-ubi9
+    container_name: URLShorteningContainer
+    environment:
+      MYSQL_ROOT_PASSWORD: ExampleRoot
+      MYSQL_USER: ExampleUser
+      MYSQL_PASSWORD: SecretPassword
+      MYSQL_DATABASE: URLShorteningDB
+    ports:
+      - "3306:3306"
