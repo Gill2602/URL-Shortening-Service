@@ -1,0 +1,15 @@
+@startuml DatabaseStructureUML
+
+entity ShortenedURL {
+    * id : bigint <<AI>>
+    --
+    * original_url: varchar(4096)
+    * shorted_url: varchar(255)
+    * created_at: date
+    * updated_at: date
+    /' URL statistics '/
+    * last_access_at: date
+    * number_of_access: int
+}
+
+@enduml
