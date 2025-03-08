@@ -27,7 +27,7 @@ public class ShortenedUrlEntity {
 
     @Column(name = "original_url", length = 4096, unique = true, nullable = false)
     private String originalUrl;
-    @Column(name = "shorted_code", length = 128, unique = true, nullable = false)
+    @Column(name = "shorted_code", length = 255, unique = true, nullable = false)
     private String shortedCode;
 
     @Column(name = "created_at", nullable = false)
