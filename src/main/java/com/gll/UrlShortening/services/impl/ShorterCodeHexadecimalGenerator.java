@@ -13,11 +13,12 @@ public class ShorterCodeHexadecimalGenerator implements ShorterCodeGenerator {
     public ShorterCodeHexadecimalGenerator(final ShortenedUrlRepository repository) {
         this.repository = repository;
 
-        counter = repository.findTopByOrderByCreatedAtDesc()
+        counter = repository.findLastRecordCreated()
                 .map(record -> Long.parseLong(record.getShortenedCode(), 16) + 1)
                 .orElse(0L);
     }
 
+    @Override
     public String next() {
         return Long.toHexString(counter++).toUpperCase();
     }

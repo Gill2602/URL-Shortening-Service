@@ -5,7 +5,7 @@ import com.gll.UrlShortening.mappers.Mapper;
 import com.gll.UrlShortening.request.ShortUrlRequest;
 import com.gll.UrlShortening.response.ShortUrlResponse;
 import com.gll.UrlShortening.response.StatsShortUrlResponse;
-import com.gll.UrlShortening.services.ShortenedUrlService;
+import com.gll.UrlShortening.services.impl.ShortenedUrlServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/shorten")
 public class UrlShorteningController {
 
-    private final ShortenedUrlService shortenedUrlService;
+    private final ShortenedUrlServiceImpl shortenedUrlService;
     private final Mapper mapper;
 
-    public UrlShorteningController(final ShortenedUrlService shortenedUrlService,
+    public UrlShorteningController(final ShortenedUrlServiceImpl shortenedUrlService,
                                    final Mapper mapper) {
         this.shortenedUrlService = shortenedUrlService;
         this.mapper = mapper;

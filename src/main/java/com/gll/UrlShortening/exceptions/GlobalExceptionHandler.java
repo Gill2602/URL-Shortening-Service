@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(AlreadyExistException.class)
-    public ResponseEntity<ErrorResponse> AlreadyExistExceptionHandler(AlreadyExistException e) {
+    @ExceptionHandler({AlreadyExistException.class, InvalidUrlException.class})
+    public ResponseEntity<ErrorResponse> BadRequestExceptionHandler(RuntimeException e) {
         int responseStatus = HttpStatus.BAD_REQUEST.value();
 
         return ResponseEntity.status(responseStatus).body(
@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
         );
     }
 
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler({NotFoundException.class})
     public ResponseEntity<ErrorResponse> NotFoundExceptionHandler(NotFoundException e) {
         int responseStatus = HttpStatus.NOT_FOUND.value();
 
