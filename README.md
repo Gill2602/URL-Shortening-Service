@@ -8,6 +8,10 @@ A RESTful API for a URL shortening service. This API allows users to:
 - Delete an existing short URL
 - Get statistics on the short URL 
 
+This repository provides an implementation of the URL shortener project from roadmap.sh: 
+
+- https://roadmap.sh/projects/url-shortening-service
+
 ## Technologies Used
 
 - **Java 21** programming language
