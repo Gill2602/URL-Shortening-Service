@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -16,11 +17,11 @@ public class ErrorResponse {
 
     private String message;
     private int status;
-    private ZonedDateTime timestamp;
+    private LocalDateTime timestamp;
 
     public ErrorResponse(String message, int status) {
         this.message = message;
         this.status = status;
-        this.timestamp = ZonedDateTime.now(ZoneId.of("GMT"));
+        this.timestamp = LocalDateTime.now(ZoneId.of("GMT"));
     }
 }

@@ -4,11 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 @Data
 @Builder
-public class ShortUrlResponse {
+public class StatsShortUrlResponse {
 
     private Long id;
 
@@ -17,4 +16,7 @@ public class ShortUrlResponse {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    private LocalDateTime lastAccessAt;
+    private Integer numberOfAccess;
 }

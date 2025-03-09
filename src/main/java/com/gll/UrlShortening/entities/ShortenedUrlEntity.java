@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 @Data
@@ -27,15 +28,15 @@ public class ShortenedUrlEntity {
 
     @Column(name = "original_url", length = 4096, unique = true, nullable = false)
     private String originalUrl;
-    @Column(name = "shorted_code", length = 255, unique = true, nullable = false)
-    private String shortedCode;
+    @Column(name = "shortened_code", length = 255, unique = true, nullable = false)
+    private String shortenedCode;
 
     @Column(name = "created_at", nullable = false)
-    private ZonedDateTime createdAt;
+    private LocalDateTime createdAt;
     @Column(name = "updated_at", nullable = false)
-    private ZonedDateTime updatedAt;
+    private LocalDateTime updatedAt;
     @Column(name = "last_access_at", nullable = false)
-    private ZonedDateTime lastAccessAt;
+    private LocalDateTime lastAccessAt;
 
     @Column(name = "number_of_access", nullable = false)
     private Integer numberOfAccess;

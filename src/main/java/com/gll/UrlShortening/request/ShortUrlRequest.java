@@ -3,7 +3,7 @@ package com.gll.UrlShortening.request;
 import lombok.Data;
 
 @Data
-public class CreateShortUrlRequest {
+public class ShortUrlRequest {
 
-    private String normalUrl;
+    private String url;
 }

@@ -14,7 +14,7 @@ public class ShorterCodeHexadecimalGenerator implements ShorterCodeGenerator {
         this.repository = repository;
 
         counter = repository.findTopByOrderByCreatedAtDesc()
-                .map(record -> Long.parseLong(record.getShortedCode(), 16) + 1)
+                .map(record -> Long.parseLong(record.getShortenedCode(), 16) + 1)
                 .orElse(0L);
     }
 
