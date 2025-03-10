@@ -1,13 +1,13 @@
 package com.gll.UrlShortening.services.impl;
 
-import com.gll.UrlShortening.services.URLValidator;
+import com.gll.UrlShortening.services.UrlValidator;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
 @Service
-public class URLValidatorImpl implements URLValidator {
+public class URLValidatorImpl implements UrlValidator {
 
     @Override
     public boolean isValidUrl(String url) {

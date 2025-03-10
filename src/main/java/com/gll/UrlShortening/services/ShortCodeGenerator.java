@@ -1,5 +1,5 @@
 package com.gll.UrlShortening.services;
 
-public interface ShorterCodeGenerator {
+public interface ShortCodeGenerator {
     String next();
 }

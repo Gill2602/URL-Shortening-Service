@@ -17,8 +17,8 @@ This repository provides an implementation of the URL shortener project from roa
 - **Java 21** programming language
 - **Spring Boot 3.4** Java framework
 - **MariaDB 11.7.2-ubi9** database
-- **Maven** (for dependency management)
-- **Docker** (optional for deployment)
+- **Maven** Dependency management
+- **Docker** Deployment database
 
 ## Installation Guide
 
@@ -51,8 +51,8 @@ This repository provides an implementation of the URL shortener project from roa
 ```json
 {
   "id": "1478",
-  "originalUrl": "https://www.youtube.com/",
-  "shortenedCode": "5C6",
+  "url": "https://www.youtube.com/",
+  "shortCode": "5C6",
   "createdAt": "2021-09-01T12:00:00.0000000",
   "updatedAt": "2021-09-01T12:00:00.0000000"
 }
@@ -64,8 +64,8 @@ This repository provides an implementation of the URL shortener project from roa
 ```json
 {
   "id": "1478",
-  "originalUrl": "https://www.youtube.com/",
-  "shortenedCode": "5C6",
+  "url": "https://www.youtube.com/",
+  "shortCode": "5C6",
   "createdAt": "2021-09-01T12:00:00.0000000",
   "updatedAt": "2021-09-01T12:00:00.0000000"
 }
@@ -83,8 +83,8 @@ This repository provides an implementation of the URL shortener project from roa
 ```json
 {
   "id": "1",
-  "originalUrl": "https://roadmap.sh",
-  "shortenedCode": "abc123",
+  "url": "https://roadmap.sh",
+  "shortCode": "abc123",
   "createdAt": "2021-09-01T12:00:00.0000000",
   "updatedAt": "2021-09-01T12:25:00.0000000"
 }
@@ -102,8 +102,8 @@ This repository provides an implementation of the URL shortener project from roa
 ```json
 {
   "id": "1",
-  "originalUrl": "https://roadmap.sh/projects/url-shortening-service",
-  "shortenedCode": "abc123",
+  "url": "https://roadmap.sh/projects/url-shortening-service",
+  "shortCode": "abc123",
   "createdAt": "2021-09-01T12:00:00.0000000",
   "updatedAt": "2021-09-01T12:00:00.0000000", 
   "lastAccessAt": "2022-02-26T14:30:00.0000000",

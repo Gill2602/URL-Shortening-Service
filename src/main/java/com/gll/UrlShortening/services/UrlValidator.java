@@ -1,6 +1,6 @@
 package com.gll.UrlShortening.services;
 
-public interface URLValidator {
+public interface UrlValidator {
 
     boolean isValidUrl(String url);
 }

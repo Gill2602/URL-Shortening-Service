@@ -1,19 +1,18 @@
 package com.gll.UrlShortening.response;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 @Data
-@Builder
+@NoArgsConstructor
 public class ShortUrlResponse {
 
     private Long id;
 
-    private String originalUrl;
-    private String shortenedCode;
+    private String url;
+    private String shortCode;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

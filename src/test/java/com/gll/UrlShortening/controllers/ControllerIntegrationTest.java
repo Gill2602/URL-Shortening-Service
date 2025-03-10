@@ -2,10 +2,10 @@ package com.gll.UrlShortening.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gll.UrlShortening.TestDataUtils;
-import com.gll.UrlShortening.entities.ShortenedUrlEntity;
-import com.gll.UrlShortening.repositories.ShortenedUrlRepository;
+import com.gll.UrlShortening.entities.ShortUrlEntity;
+import com.gll.UrlShortening.repositories.ShortUrlRepository;
 import com.gll.UrlShortening.request.ShortUrlRequest;
-import com.gll.UrlShortening.services.ShortenedUrlService;
+import com.gll.UrlShortening.services.ShortUrlService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,14 +27,14 @@ public class ControllerIntegrationTest {
 
     private final MockMvc mockMvc;
     private final ObjectMapper mapper;
-    private final ShortenedUrlService urlService;
-    private final ShortenedUrlRepository urlRepository;
+    private final ShortUrlService urlService;
+    private final ShortUrlRepository urlRepository;
 
     @Autowired
     public ControllerIntegrationTest(final MockMvc mockMvc,
                                      final ObjectMapper mapper,
-                                     final ShortenedUrlService urlService,
-                                     final ShortenedUrlRepository urlRepository) {
+                                     final ShortUrlService urlService,
+                                     final ShortUrlRepository urlRepository) {
         this.mockMvc = mockMvc;
         this.mapper = mapper;
         this.urlService = urlService;
@@ -77,11 +77,11 @@ public class ControllerIntegrationTest {
         ShortUrlRequest request = TestDataUtils.getSomeValidRequest().getFirst();
         urlService.createShortUrl(request);
 
-        ShortenedUrlEntity created = urlRepository
+        ShortUrlEntity created = urlRepository
                 .findLastRecordCreated().orElseThrow(Exception::new);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/shorten/" + created.getShortenedCode())
+                MockMvcRequestBuilders.get("/shorten/" + created.getShortCode())
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         );
@@ -103,14 +103,14 @@ public class ControllerIntegrationTest {
         ShortUrlRequest request = TestDataUtils.getSomeValidRequest().getFirst();
         urlService.createShortUrl(request);
 
-        ShortenedUrlEntity created = urlRepository
+        ShortUrlEntity created = urlRepository
                 .findLastRecordCreated().orElseThrow(Exception::new);
 
         request.setUrl("https://roadmap.sh/projects/url-shortening-service");
         String json = mapper.writeValueAsString(request);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.put("/shorten/" + created.getShortenedCode())
+                MockMvcRequestBuilders.put("/shorten/" + created.getShortCode())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpect(
@@ -124,14 +124,14 @@ public class ControllerIntegrationTest {
         ShortUrlRequest request = TestDataUtils.getSomeValidRequest().getFirst();
         urlService.createShortUrl(request);
 
-        ShortenedUrlEntity created = urlRepository
+        ShortUrlEntity created = urlRepository
                 .findLastRecordCreated().orElseThrow(Exception::new);
 
         request.setUrl("htt/roadmap.sh/projects/url-shortening-service");
         String json = mapper.writeValueAsString(request);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.put("/shorten/" + created.getShortenedCode())
+                MockMvcRequestBuilders.put("/shorten/" + created.getShortCode())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpect(
@@ -160,11 +160,11 @@ public class ControllerIntegrationTest {
         ShortUrlRequest request = TestDataUtils.getSomeValidRequest().getFirst();
         urlService.createShortUrl(request);
 
-        ShortenedUrlEntity created = urlRepository
+        ShortUrlEntity created = urlRepository
                 .findLastRecordCreated().orElseThrow(Exception::new);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.delete("/shorten/" + created.getShortenedCode())
+                MockMvcRequestBuilders.delete("/shorten/" + created.getShortCode())
         ).andExpect(
                 MockMvcResultMatchers.status().isNoContent()
         );
@@ -186,11 +186,11 @@ public class ControllerIntegrationTest {
         ShortUrlRequest request = TestDataUtils.getSomeValidRequest().getFirst();
         urlService.createShortUrl(request);
 
-        ShortenedUrlEntity created = urlRepository
+        ShortUrlEntity created = urlRepository
                 .findLastRecordCreated().orElseThrow(Exception::new);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/shorten/" + created.getShortenedCode() + "/stats")
+                MockMvcRequestBuilders.get("/shorten/" + created.getShortCode() + "/stats")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         );

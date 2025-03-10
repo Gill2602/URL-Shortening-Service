@@ -1,7 +1,7 @@
 package com.gll.UrlShortening.repositories;
 
 import com.gll.UrlShortening.TestDataUtils;
-import com.gll.UrlShortening.entities.ShortenedUrlEntity;
+import com.gll.UrlShortening.entities.ShortUrlEntity;
 import lombok.extern.java.Log;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,46 +21,46 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class RepositoryIntegrationTest {
 
-    private final ShortenedUrlRepository shortenedUrlRepository;
+    private final ShortUrlRepository shortenedUrlRepository;
 
     @Autowired
-    public RepositoryIntegrationTest(final ShortenedUrlRepository shortenedUrlRepository) {
+    public RepositoryIntegrationTest(final ShortUrlRepository shortenedUrlRepository) {
         this.shortenedUrlRepository = shortenedUrlRepository;
     }
 
     @Test
     void findLastRecordCreated() {
-        List<ShortenedUrlEntity> urlEntities = TestDataUtils.getSomeShortenedUrl();
+        List<ShortUrlEntity> urlEntities = TestDataUtils.getSomeShortenedUrl();
         shortenedUrlRepository.saveAll(urlEntities);
 
-        Optional<ShortenedUrlEntity> optionalResult = shortenedUrlRepository.findLastRecordCreated();
+        Optional<ShortUrlEntity> optionalResult = shortenedUrlRepository.findLastRecordCreated();
         assertThat(optionalResult).isPresent();
 
-        ShortenedUrlEntity result = optionalResult.get();
+        ShortUrlEntity result = optionalResult.get();
         assertThat(result).isEqualTo(urlEntities.getLast());
     }
 
     @Test
     void findByShortenedCode() {
-        List<ShortenedUrlEntity> urlEntities = TestDataUtils.getSomeShortenedUrl();
+        List<ShortUrlEntity> urlEntities = TestDataUtils.getSomeShortenedUrl();
         shortenedUrlRepository.saveAll(urlEntities);
 
-        Optional<ShortenedUrlEntity> failResult = shortenedUrlRepository.findByShortenedCode("L0L");
+        Optional<ShortUrlEntity> failResult = shortenedUrlRepository.findByShortCode("L0L");
         assertThat(failResult).isNotPresent();
 
-        Optional<ShortenedUrlEntity> optionalResult = shortenedUrlRepository.findByShortenedCode("2B");
+        Optional<ShortUrlEntity> optionalResult = shortenedUrlRepository.findByShortCode("2B");
         assertThat(optionalResult).isPresent();
 
-        ShortenedUrlEntity result = optionalResult.get();
+        ShortUrlEntity result = optionalResult.get();
         assertThat(result).isEqualTo(urlEntities.get(1));
     }
 
     @Test
     void existsByOriginalUrl() {
-        List<ShortenedUrlEntity> urlEntities = TestDataUtils.getSomeShortenedUrl();
+        List<ShortUrlEntity> urlEntities = TestDataUtils.getSomeShortenedUrl();
         shortenedUrlRepository.saveAll(urlEntities);
 
-        assertThat(shortenedUrlRepository.existsByOriginalUrl("https://spring.io/")).isFalse();
-        assertThat(shortenedUrlRepository.existsByOriginalUrl("https://www.youtube.com/")).isTrue();
+        assertThat(shortenedUrlRepository.existsByUrl("https://spring.io/")).isFalse();
+        assertThat(shortenedUrlRepository.existsByUrl("https://www.youtube.com/")).isTrue();
     }
 }

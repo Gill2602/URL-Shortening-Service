@@ -22,6 +22,6 @@ public class ErrorResponse {
     public ErrorResponse(String message, int status) {
         this.message = message;
         this.status = status;
-        this.timestamp = LocalDateTime.now(ZoneId.of("GMT"));
+        this.timestamp = LocalDateTime.now(ZoneId.of("Z"));
     }
 }

@@ -17,18 +17,18 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "ShortenedURLs")
-@Entity(name = "ShortenedURL")
-public class ShortenedUrlEntity {
+@Table(name = "ShortURLs")
+@Entity(name = "ShortURL")
+public class ShortUrlEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "original_url", length = 4096, unique = true, nullable = false)
-    private String originalUrl;
-    @Column(name = "shortened_code", length = 255, unique = true, nullable = false)
-    private String shortenedCode;
+    @Column(name = "url", length = 4096, unique = true, nullable = false)
+    private String url;
+    @Column(name = "short_code", length = 255, unique = true, nullable = false)
+    private String shortCode;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -37,6 +37,6 @@ public class ShortenedUrlEntity {
     @Column(name = "last_access_at", nullable = false)
     private LocalDateTime lastAccessAt;
 
-    @Column(name = "number_of_access", nullable = false)
-    private Integer numberOfAccess;
+    @Column(name = "access_count", nullable = false)
+    private Integer accessCount;
 }

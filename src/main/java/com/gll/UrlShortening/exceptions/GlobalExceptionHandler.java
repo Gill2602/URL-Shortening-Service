@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({AlreadyExistException.class, InvalidUrlException.class})
+    @ExceptionHandler({AlreadyExistsException.class, InvalidUrlException.class})
     public ResponseEntity<ErrorResponse> BadRequestExceptionHandler(RuntimeException e) {
         int responseStatus = HttpStatus.BAD_REQUEST.value();
 
