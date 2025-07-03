@@ -15,7 +15,7 @@ This repository provides an implementation of the URL shortener project from roa
 ## Technologies Used
 
 - **Java 21** programming language
-- **Spring Boot 3.4** Java framework
+- **Spring Boot 3.5.3** Java framework
 - **MariaDB 11.7.2-ubi9** database
 - **Maven** Dependency management
 - **Docker** Deployment database
