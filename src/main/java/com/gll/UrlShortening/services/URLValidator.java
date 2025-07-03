@@ -1,16 +1,15 @@
-package com.gll.UrlShortening.services.impl;
-
-import com.gll.UrlShortening.services.UrlValidator;
-import org.springframework.stereotype.Service;
+package com.gll.UrlShortening.services;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@Service
-public class URLValidatorImpl implements UrlValidator {
+public final class URLValidator {
 
-    @Override
-    public boolean isValidUrl(String url) {
+    private URLValidator() {
+        throw new UnsupportedOperationException("URL Utility class - cannot be instantiated");
+    }
+
+    public static boolean isValidUrl(String url) {
         if (url == null || url.isBlank()) {
             return false;
         }

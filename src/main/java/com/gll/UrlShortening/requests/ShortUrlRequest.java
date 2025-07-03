@@ -1,4 +1,4 @@
-package com.gll.UrlShortening.request;
+package com.gll.UrlShortening.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,7 +2,7 @@ package com.gll.UrlShortening.mappers.impl;
 
 import com.gll.UrlShortening.entities.ShortUrlEntity;
 import com.gll.UrlShortening.mappers.Mapper;
-import com.gll.UrlShortening.response.ShortUrlResponse;
+import com.gll.UrlShortening.responses.ShortUrlResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

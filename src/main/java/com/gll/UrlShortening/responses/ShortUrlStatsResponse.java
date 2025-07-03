@@ -1,4 +1,4 @@
-package com.gll.UrlShortening.response;
+package com.gll.UrlShortening.responses;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-public class ShortUrlResponse {
+public class ShortUrlStatsResponse {
 
     private Long id;
 
@@ -16,4 +16,7 @@ public class ShortUrlResponse {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    private LocalDateTime lastAccessAt;
+    private Integer accessCount;
 }

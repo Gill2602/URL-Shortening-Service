@@ -1,7 +1,6 @@
-package com.gll.UrlShortening.services.impl;
+package com.gll.UrlShortening.services;
 
 import com.gll.UrlShortening.repositories.ShortUrlRepository;
-import com.gll.UrlShortening.services.ShortCodeGenerator;
 import org.springframework.stereotype.Service;
 
 @Service

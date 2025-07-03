@@ -1,4 +1,4 @@
-package com.gll.UrlShortening.response;
+package com.gll.UrlShortening.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 @Data
 @Builder

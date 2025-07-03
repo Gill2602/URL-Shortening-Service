@@ -1,58 +1,48 @@
 package com.gll.UrlShortening.controllers;
 
-import com.gll.UrlShortening.entities.ShortUrlEntity;
-import com.gll.UrlShortening.mappers.Mapper;
-import com.gll.UrlShortening.request.ShortUrlRequest;
-import com.gll.UrlShortening.response.ShortUrlResponse;
-import com.gll.UrlShortening.response.ShortUrlStatsResponse;
-import com.gll.UrlShortening.services.impl.ShortUrlServiceImpl;
+import com.gll.UrlShortening.requests.ShortUrlRequest;
+import com.gll.UrlShortening.responses.ShortUrlResponse;
+import com.gll.UrlShortening.responses.ShortUrlStatsResponse;
+import com.gll.UrlShortening.services.ShortUrlService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/shorten")
 public class UrlShorteningController {
 
-    private final ShortUrlServiceImpl shortUrlService;
-    private final Mapper<ShortUrlEntity, ShortUrlResponse> mapperToResponse;
-    private final Mapper<ShortUrlEntity, ShortUrlStatsResponse> mapperToStatsResponse;
+    private final ShortUrlService shortUrlService;
 
-    public UrlShorteningController(final ShortUrlServiceImpl shortUrlService,
-                                   final Mapper<ShortUrlEntity, ShortUrlResponse> mapperToResponse,
-                                   final Mapper<ShortUrlEntity, ShortUrlStatsResponse> mapperToStatsResponse) {
+    public UrlShorteningController(final ShortUrlService shortUrlService) {
         this.shortUrlService = shortUrlService;
-        this.mapperToResponse = mapperToResponse;
-        this.mapperToStatsResponse = mapperToStatsResponse;
     }
 
     @PostMapping
     public ResponseEntity<ShortUrlResponse> createShortUrl(@RequestBody ShortUrlRequest request) {
-        ShortUrlEntity shortUrl = shortUrlService.createShortUrl(request);
-        ShortUrlResponse response = mapperToResponse.mapFrom(shortUrl);
-
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(shortUrlService.createShortUrl(request), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/{shortCode}")
     public ResponseEntity<ShortUrlResponse> findOriginalUrl(@PathVariable("shortCode") String shortCode) {
-        ShortUrlEntity shortUrl = shortUrlService.findByShortCode(shortCode);
-        ShortUrlResponse response = mapperToResponse.mapFrom(shortUrl);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(shortUrlService.findByShortCode(shortCode), HttpStatus.OK);
     }
 
     @PutMapping(path = "/{shortCode}")
     public ResponseEntity<ShortUrlResponse> updateShortUrl(@PathVariable("shortCode") String shortCode,
                                                            @RequestBody ShortUrlRequest request) {
-        ShortUrlEntity shortUrl = shortUrlService.updateShortUrl(shortCode, request);
-        ShortUrlResponse response = mapperToResponse.mapFrom(shortUrl);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(shortUrlService.updateShortUrl(shortCode, request), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{shortCode}")
-    public ResponseEntity<ShortUrlResponse> deleteShortUrl(@PathVariable("shortCode") String shortCode) {
+    public ResponseEntity<Void> deleteShortUrl(@PathVariable("shortCode") String shortCode) {
         shortUrlService.deleteShortUrl(shortCode);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -60,9 +50,6 @@ public class UrlShorteningController {
 
     @GetMapping(path = "/{shortCode}/stats")
     public ResponseEntity<ShortUrlStatsResponse> findShortUrlStats(@PathVariable("shortCode") String shortCode) {
-        ShortUrlEntity shortUrl = shortUrlService.getShortUrlStats(shortCode);
-        ShortUrlStatsResponse shortUrlResponse = mapperToStatsResponse.mapFrom(shortUrl);
-
-        return new ResponseEntity<>(shortUrlResponse, HttpStatus.OK);
+        return new ResponseEntity<>(shortUrlService.getShortUrlStats(shortCode), HttpStatus.OK);
     }
 }

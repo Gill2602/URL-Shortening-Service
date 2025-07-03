@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gll.UrlShortening.TestDataUtils;
 import com.gll.UrlShortening.entities.ShortUrlEntity;
 import com.gll.UrlShortening.repositories.ShortUrlRepository;
-import com.gll.UrlShortening.request.ShortUrlRequest;
+import com.gll.UrlShortening.requests.ShortUrlRequest;
 import com.gll.UrlShortening.services.ShortUrlService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
-@ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
+@ExtendWith(SpringExtension.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ControllerIntegrationTest {
 
@@ -31,8 +31,7 @@ public class ControllerIntegrationTest {
     private final ShortUrlRepository urlRepository;
 
     @Autowired
-    public ControllerIntegrationTest(final MockMvc mockMvc,
-                                     final ObjectMapper mapper,
+    public ControllerIntegrationTest(final MockMvc mockMvc, final ObjectMapper mapper,
                                      final ShortUrlService urlService,
                                      final ShortUrlRepository urlRepository) {
         this.mockMvc = mockMvc;

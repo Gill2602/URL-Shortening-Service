@@ -1,7 +1,7 @@
 package com.gll.UrlShortening;
 
 import com.gll.UrlShortening.entities.ShortUrlEntity;
-import com.gll.UrlShortening.request.ShortUrlRequest;
+import com.gll.UrlShortening.requests.ShortUrlRequest;
 
 import java.time.LocalDateTime;
 import java.util.List;
